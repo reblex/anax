@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Lora");
+.textCenter {
+  text-align: center; }
+
+h1,
+h2,
+h3 {
+  font-family: "Lora, serif"; }
+
+html,
+body {
+  height: 100%; }
+
+body {
+  margin: auto;
+  margin-top: 40px;
+  width: 80%;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+.header-wrap {
+  margin-top: 20px;
+  text-align: center; }
+  .header-wrap h1 {
+    color: #182d2f; }
+
+.hLinks {
+  text-align: center;
+  font-size: 1.5em; }
+  .hLinks a {
+    text-decoration: none;
+    color: #3a6e73; }
+  .hLinks a:hover {
+    text-decoration: underline; }
+
+.main-wrap {
+  height: 100%; }
+
+.footer-wrap {
+  text-align: center;
+  flex: 1 0 auto; }

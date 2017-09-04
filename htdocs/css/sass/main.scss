@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+
+// Variables
+$contrastColor: #3a6e73;
+
+$headingFont: 'Lora, serif';
+
+// General
+.textCenter {
+    text-align: center;
+}
+
+h1,
+h2,
+h3 {
+    font-family: $headingFont;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: auto;
+    margin-top: 40px;
+    width: 80%;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+// Specific
+
+.meImg {
+    // float: left;
+}
+
+.header-wrap {
+    margin-top: 20px;
+    text-align: center;
+    h1 {
+        color: darken($contrastColor, 20%);
+    }
+}
+
+.hLinks {
+    text-align: center;
+    font-size: 1.5em;
+    a {
+        text-decoration: none;
+        color: $contrastColor;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.main-wrap {
+    height: 100%;
+}
+
+.footer-wrap {
+    text-align: center;
+    flex: 1 0 auto;
+}
