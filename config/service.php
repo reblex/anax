@@ -5,15 +5,17 @@
 
 // Add all resources to $app
 $app = new \Anax\App\App();
-$app->request    = new \Anax\Request\Request();
-$app->response   = new \Anax\Response\Response();
-$app->url        = new \Anax\Url\Url();
-$app->router     = new \Anax\Route\RouterInjectable();
-$app->view       = new \Anax\View\ViewContainer();
-$app->textfilter = new \Anax\TextFilter\TextFilter();
-$app->session    = new \Anax\Session\SessionConfigurable();
+$app->request       = new \Anax\Request\Request();
+$app->response      = new \Anax\Response\Response();
+$app->url           = new \Anax\Url\Url();
+$app->router        = new \Anax\Route\RouterInjectable();
+$app->view          = new \Anax\View\ViewContainer();
+$app->textfilter    = new \Anax\TextFilter\TextFilter();
+$app->session       = new \Anax\Session\SessionConfigurable();
 $app->rem           = new \Anax\RemServer\RemServer();
 $app->remController = new \Anax\RemServer\RemServerController();
+$app->db            = new \Anax\Database\Database();
+$app->dbController  = new \Anax\Database\DatabaseController();
 
 // Configure request
 $app->request->init();
@@ -43,6 +45,11 @@ $app->rem->inject(["session" => $app->session]);
 
 // Init controller for the REM Server
 $app->remController->setApp($app);
+
+// Configure Database Controller and Connect
+$app->dbController->configure("database.php");
+$app->dbController->setApp($app);
+$app->dbController->connect();
 
 // Return the populated $app
 return $app;
