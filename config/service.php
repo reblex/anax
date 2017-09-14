@@ -5,17 +5,19 @@
 
 // Add all resources to $app
 $app = new \Anax\App\App();
-$app->request       = new \Anax\Request\Request();
-$app->response      = new \Anax\Response\Response();
-$app->url           = new \Anax\Url\Url();
-$app->router        = new \Anax\Route\RouterInjectable();
-$app->view          = new \Anax\View\ViewContainer();
-$app->textfilter    = new \Anax\TextFilter\TextFilter();
-$app->session       = new \Anax\Session\SessionConfigurable();
-$app->rem           = new \Anax\RemServer\RemServer();
-$app->remController = new \Anax\RemServer\RemServerController();
-$app->db            = new \Anax\Database\Database();
-$app->dbController  = new \Anax\Database\DatabaseController();
+$app->request           = new \Anax\Request\Request();
+$app->response          = new \Anax\Response\Response();
+$app->url               = new \Anax\Url\Url();
+$app->router            = new \Anax\Route\RouterInjectable();
+$app->view              = new \Anax\View\ViewContainer();
+$app->textfilter        = new \Anax\TextFilter\TextFilter();
+$app->session           = new \Anax\Session\SessionConfigurable();
+$app->rem               = new \Anax\RemServer\RemServer();
+$app->remController     = new \Anax\RemServer\RemServerController();
+$app->db                = new \Anax\Database\Database();
+$app->dbController      = new \Anax\Database\DatabaseController();
+$app->comment           = new \Anax\Comment\Comment();
+$app->commentController = new \Anax\Comment\CommentController();
 
 // Configure request
 $app->request->init();
@@ -50,6 +52,10 @@ $app->remController->setApp($app);
 $app->dbController->configure("database.php");
 $app->dbController->setApp($app);
 $app->dbController->connect();
+
+// Configure Comments
+$app->comment->setApp($app);
+$app->commentController->setApp($app);
 
 // Return the populated $app
 return $app;
