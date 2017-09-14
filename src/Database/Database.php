@@ -2,7 +2,6 @@
 
 namespace Anax\Database;
 
-
 /**
  * Database.
  */
@@ -23,7 +22,7 @@ class Database
             $this->pdo = new \PDO(...array_values($config));
             $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
         } catch (Exception $e) {
-            die("Could not connect to database.\nException: $e");
+            echo("Could not connect to database.\nException: $e");
         }
     }
 
@@ -40,7 +39,7 @@ class Database
         if (!$sth) {
             $this->statementException($sth, $sql, $params);
         }
-        
+
         $status = $sth->execute($params);
 
         if (!$status) {
@@ -83,5 +82,4 @@ class Database
                 : null)
         );
     }
-
 }

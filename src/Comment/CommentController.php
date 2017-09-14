@@ -5,7 +5,6 @@ namespace Anax\Comment;
 use \Anax\Common\AppInjectableInterface;
 use \Anax\Common\AppInjectableTrait;
 
-
 /**
  * Comment Controller.
  */

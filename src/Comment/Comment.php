@@ -5,7 +5,6 @@ namespace Anax\Comment;
 use \Anax\Common\AppInjectableInterface;
 use \Anax\Common\AppInjectableTrait;
 
-
 /**
  * Comment Model.
  */
@@ -13,7 +12,7 @@ class Comment implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
-    function __construct()
+    public function __construct()
     {
         $this->table = "comments";
     }
