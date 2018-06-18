@@ -27,3 +27,36 @@ Jag har alltid tyckt att arbeta utan ramverk tillåter en större frihet. Dock k
 **Hur gick dina förberedelser inför kommentarssystemet?**
 
 Jag tänkte mycket på hur jag har arbetat i kursen OOPHP. Det finns mycket erfarenhet jag kan ta med mig från den, även fast jag inte hunnit avsluta den helt. Det finns många saker jag vill förbättra och göra annorlunda, vilket kommer hjälpa mig när jag ska göra ett kommentarssystem.
+
+
+##Kmom02
+
+**Vilka tidigare erfarenheter har du av MVC? Använde du någon speciell källa för att läsa på om MVC? Kan du med egna ord förklara någon fördel med kontroller/modell-begreppet, så som du ser på det?**
+
+Jag har inte använt MVC innan. Jag använde mig av artikeln och Wikipedia mestadels för
+att lära mig. Jag älskar att arbeta med MVC nu när jag förstår det. Det är så enkelt
+att pussla ihop funktionalitet när man har fristående modeller, och kan använda sig
+av en Controller för att länka samman allt. Det anser jag vara den största fördelen.
+
+**Kom du fram till vad begreppet SOLID innebar och vilka källor använde du? Kan du förklara SOLID på ett par rader med dina egna ord?**
+
+Jag använde mig främst av Wikipedia men såg även på videon. Dock var den ganska komplicerad
+ibland, men jag fick ändå lite ut av den. Det finns mång principer som har med SOLID att göra.
+Att skriva SOLID kod betyder att man skriver kod som är lätt att underhålla och expandera
+är den främsta meningen. Kod/klasser ska ha ett jobb, och inte flera. Det ska gå lätt
+att utöka kod, vilket kan förknippas med modellerna i MVC, men färdig kod ska inte behöva
+ändras. Kod ska heller inte behöva implementera saker som den inte använder. Det är ganska
+mycket att ta i, men allt som allt ska koden vara lätt att arbeta med.
+
+**Gick arbetet med REM servern bra och lyckades du integrera den i din me-sida?**
+
+Det gick mycket bra. Det var en väl skriven artikel. Jag hade inte några problem
+med att integrera den i min sida.
+
+
+**Berätta om arbetet med din kommentarsmodul, hur långt har du kommit och hur tänker du?**
+
+Jag tycker det har gått mycket bra. Jag har gjort backend(MVC) för hantering med en databas,
+viket jag är mycket nöjd med. Allt är gjort med CRUD, och jag är mycket nöjd med hur jag skrivit
+hela databasdelen. Liknande databashanteringen har jag MVC för att hantera själva kommentarerna.
+Just nu har jag ingen front end, men all back end fungerar perfekt!
