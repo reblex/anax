@@ -61,6 +61,8 @@ viket jag är mycket nöjd med. Allt är gjort med CRUD, och jag är mycket nöj
 hela databasdelen. Liknande databashanteringen har jag MVC för att hantera själva kommentarerna.
 Just nu har jag ingen front end, men all back end fungerar perfekt!
 
+##Kmom03
+
 **Hur känns det att jobba med begreppen kring dependency injection, service locator och lazy loading?**
 
 Det kändes smidigt! Hade lite svårt att förstå hur man skulle göra, men tycker att det är
