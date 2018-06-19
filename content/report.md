@@ -60,3 +60,38 @@ Jag tycker det har gått mycket bra. Jag har gjort backend(MVC) för hantering m
 viket jag är mycket nöjd med. Allt är gjort med CRUD, och jag är mycket nöjd med hur jag skrivit
 hela databasdelen. Liknande databashanteringen har jag MVC för att hantera själva kommentarerna.
 Just nu har jag ingen front end, men all back end fungerar perfekt!
+
+**Hur känns det att jobba med begreppen kring dependency injection, service locator och lazy loading?**
+
+Det kändes smidigt! Hade lite svårt att förstå hur man skulle göra, men tycker att det är
+mycket mer efektivt nu när jag lärt mig.
+
+**Hur känns det att göra dig av med beroendet till $app, blir $di bättre?**
+
+Det kändes lite kladdigt att använda $app, speciellt när det började bli fler och fler
+services. $di är lite enklare att läsa, då det mesta sköts i configs, och det är mycket
+smidigare på grund av lazy loading.
+
+**Hur känns det att återigen göra refaktoring på din me-sida, blir det förbättringar på kodstrukturen, eller bara annorlunda?**
+
+Tyckte defenitivt att Dependency Injection är den bästa förbättringen såhär långt. Mycket renare
+och förståeligare kodstruktur.
+
+**Lyckades du införa begreppen kring DI när du vidareutvecklade ditt kommentarssystem?**
+
+Japp, det var inte särskillt svårt när jag hade förstått hur det fungerade. Arbetade främst med
+databasen och inte så mycket med styling eller utskrift av kommentarerna. Just nu hämtar jag
+bara allt och gör en var_dump, men allt finns redo för nästa kursmoment.
+
+**Påbörjade du arbetet (hur gick det) med databasmodellen eller avvaktar du till kommande kmom?**
+
+Jag har löst allt angående CRUD för databasen med hjälp av en databasmodell och controller.
+Har gjort mycket av liknande grejer så det var inte så klurigt att lösa.
+
+**Allmänna kommentarer kring din me-sida och dess kodstruktur?**
+
+Tycker att det är en ganska överkomplicerad lösning för något så pass "simpelt". Det blir ganska
+kladdigt och det är många kall fram och tillbaka.
+Dock känner jag nog så främst för att man är tvungen att ändra mycket fram och tillbaka
+genom de olika kursmomenten. DI har gjort allt lite mindre rörigt, men allt är inte helt
+hur jag skulle vilja ha det.
