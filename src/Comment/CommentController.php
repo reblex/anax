@@ -2,26 +2,28 @@
 
 namespace Anax\Comment;
 
-use \Anax\Common\AppInjectableInterface;
-use \Anax\Common\AppInjectableTrait;
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
 
 /**
  * Comment Controller.
  */
-class CommentController implements AppInjectableInterface
+class CommentController implements InjectionAwareInterface
 {
-    use AppInjectableTrait;
+    use InjectionAwareTrait;
 
 
     public function makePost()
     {
         $poster = getPost("poster") ?: "";
         $content = getPost("content") ?: "";
-        return $this->app->comment->makePost($poster, $content);
+        return $this->di->get("comment")->makePost($poster, $content);
     }
 
     public function getAllPosts()
     {
-        return $this->app->comment->getAll();
+        $comments = $this->di->get("comment")->getAll();
+        $this->di->get("view")->add("comments/comments", ["content" => $comments], "main");
+        $this->di->get("pageRender")->renderPage(["title" => "Kommentarer"]);
     }
 }

@@ -2,14 +2,14 @@
 
 namespace Anax\Database;
 
-use \Anax\Common\AppInjectableInterface;
-use \Anax\Common\AppInjectableTrait;
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 
-class DatabaseController implements AppInjectableInterface
+class DatabaseController implements InjectionAwareInterface
 {
-    use AppInjectableTrait;
+    use InjectionAwareTrait;
     use ConfigureTrait;
 
 
@@ -42,7 +42,7 @@ class DatabaseController implements AppInjectableInterface
      */
     public function connect()
     {
-        $this->app->db->connect($this->config);
+        $this->di->get("db")->connect($this->config);
     }
 
 
@@ -67,7 +67,7 @@ class DatabaseController implements AppInjectableInterface
                 . implode(",", $valTemps)
                 . ");";
 
-        return $this->app->db->execute($query, $vals);
+        return $this->di->get("db")->execute($query, $vals);
     }
 
 
@@ -87,7 +87,7 @@ class DatabaseController implements AppInjectableInterface
                 . $where
                 . ";";
 
-        return $this->app->db->executeFetchAll($query);
+        return $this->di->get("db")->executeFetchAll($query);
     }
 
 
@@ -113,7 +113,7 @@ class DatabaseController implements AppInjectableInterface
                 . $where
                 . ";";
 
-        return $this->app->db->execute($query);
+        return $this->di->get("db")->execute($query);
     }
 
     /**
@@ -129,6 +129,6 @@ class DatabaseController implements AppInjectableInterface
                 . $where
                 . ";";
 
-        return $this->app->db->execute($query);
+        return $this->di->get("db")->execute($query);
     }
 }

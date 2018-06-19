@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b140a12f09d3aff1d9bbadea5a3e46de",
+    "content-hash": "ff923f81efc1e3412e4cf1fe68edf2cb",
     "packages": [
         {
             "name": "anax/common",
@@ -147,6 +147,56 @@
                 "mvc"
             ],
             "time": "2018-05-24T21:47:32+00:00"
+        },
+        {
+            "name": "anax/page",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/canax/page.git",
+                "reference": "4f602e9fefdc4151d2957c5c29226775470685ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/canax/page/zipball/4f602e9fefdc4151d2957c5c29226775470685ae",
+                "reference": "4f602e9fefdc4151d2957c5c29226775470685ae",
+                "shasum": ""
+            },
+            "require": {
+                "anax/di": "^1.0",
+                "anax/request": "^1.0",
+                "anax/response": "^1.0",
+                "anax/view": "^1.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Anax\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikael Roos",
+                    "email": "mos@dbwebb.se",
+                    "homepage": "https://dbwebb.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Anax page module.",
+            "homepage": "https://dbwebb.se/anax",
+            "keywords": [
+                "boilerplate",
+                "education",
+                "framework",
+                "micro",
+                "mvc"
+            ],
+            "time": "2018-04-23T13:30:52+00:00"
         },
         {
             "name": "anax/request",
@@ -696,16 +746,16 @@
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.12.0.2",
+            "version": "v9.12.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "186ad7df8c02f0cbe5e8dd13f98a8b2778b2b608"
+                "reference": "959e4524ebbdbdd97913658ff32ef747d212d262"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/186ad7df8c02f0cbe5e8dd13f98a8b2778b2b608",
-                "reference": "186ad7df8c02f0cbe5e8dd13f98a8b2778b2b608",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/959e4524ebbdbdd97913658ff32ef747d212d262",
+                "reference": "959e4524ebbdbdd97913658ff32ef747d212d262",
                 "shasum": ""
             },
             "require-dev": {
@@ -747,7 +797,7 @@
                 "highlight.php",
                 "syntax"
             ],
-            "time": "2018-02-19T02:38:14+00:00"
+            "time": "2018-06-18T20:27:07+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

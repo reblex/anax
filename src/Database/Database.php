@@ -2,14 +2,17 @@
 
 namespace Anax\Database;
 
+use \Anax\DI\InjectionAwareInterface;
+use \Anax\DI\InjectionAwareTrait;
+
 /**
  * Database.
  */
-class Database
+class Database implements InjectionAwareInterface
 {
+    use InjectionAwareTrait;
+
     private $pdo;
-
-
 
     /**
      * Connect to a database.

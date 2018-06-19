@@ -1,6 +1,5 @@
 <?php
-$comments = $app->commentController->getAllPosts();
+var_dump($content);
 ?>
-Här finns det kommentarer eller nåt.
 <br>
-<?= var_dump($comments) ?> 
+Här finns det kommentarer eller nåt.
