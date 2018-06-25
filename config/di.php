@@ -17,7 +17,12 @@ return [
         ],
         "response" => [
             "shared" => true,
-            "callback" => "\Anax\Response\Response",
+            // "callback" => "\Anax\Response\Response",
+            "callback" => function () {
+                $obj = new \Anax\Response\ResponseUtility();
+                $obj->setDI($this);
+                return $obj;
+            }
         ],
         "url" => [
             "shared" => true,
@@ -155,6 +160,22 @@ return [
             "shared" => true,
             "callback" => function () {
                 $obj = new Anax\Database\Database();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "book" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Anax\Book\Book();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "bookController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Anax\Book\BookController();
                 $obj->setDI($this);
                 return $obj;
             }
