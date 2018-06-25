@@ -54,8 +54,8 @@ class CreateForm extends FormModel
      */
     public function callbackSubmit()
     {
-        $book = $this->di->get("book");
-        // $book->setDb($this->di->get("db"));
+        $book = new Book();
+        $book->setDb($this->di->get("db"));
         $book->title  = $this->form->value("title");
         $book->author = $this->form->value("author");
         $book->save();

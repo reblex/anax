@@ -70,8 +70,8 @@ class UpdateForm extends FormModel
      */
     public function getItemDetails($id)
     {
-        $book = $this->di->get("book");
-        // $book->setDb($this->di->get("db"));
+        $book = new Book();
+        $book->setDb($this->di->get("db"));
         $book->find("id", $id);
         return $book;
     }
@@ -86,8 +86,8 @@ class UpdateForm extends FormModel
      */
     public function callbackSubmit()
     {
-        $book = $this->di->get("book");
-        // $book->setDb($this->di->get("db"));
+        $book = new Book();
+        $book->setDb($this->di->get("db"));
         $book->find("id", $this->form->value("id"));
         $book->title = $this->form->value("title");
         $book->author = $this->form->value("author");

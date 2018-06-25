@@ -126,18 +126,6 @@ return [
                 return $obj;
             }
         ],
-        "comment" => [
-            "shared" => true,
-            "callback" => function () {
-                $obj = new Anax\Comment\Comment();
-                $obj->setDI($this);
-                // $obj->inject([
-                //     "textfilter" => $this->get("textfilter"),
-                //     "db" => $this->get("database"),
-                // ]);
-                return $obj;
-            }
-        ],
         "commentController" => [
             "shared" => true,
             "callback" => function () {
@@ -146,29 +134,11 @@ return [
                 return $obj;
             }
         ],
-        "dbController" => [
-            "shared" => true,
-            "callback" => function () {
-                $obj = new Anax\Database\DatabaseController();
-                $obj->setDI($this);
-                $obj->configure("database.php");
-                $obj->connect();
-                return $obj;
-            }
-        ],
         "db" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new Anax\Database\Database();
-                $obj->setDI($this);
-                return $obj;
-            }
-        ],
-        "book" => [
-            "shared" => true,
-            "callback" => function () {
-                $obj = new \Anax\Book\Book();
-                $obj->setDI($this);
+                $obj = new Anax\Database\DatabaseQueryBuilder();
+                $obj->configure("database.php");
                 return $obj;
             }
         ],

@@ -2,31 +2,17 @@
 
 namespace Anax\Comment;
 
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use \Anax\Database\ActiveRecordModel;
 
 /**
  * Comment Model.
  */
-class Comment implements InjectionAwareInterface
+class Comment extends ActiveRecordModel
 {
-    use InjectionAwareTrait;
 
-    public function __construct()
-    {
-        $this->table = "comments";
-    }
+    protected $tableName = "comments";
 
-    public function makePost($poster, $content)
-    {
-        $keys = ["poster", "content"];
-        $vals = [$poster, $content];
-
-        return $this->di->get("dbController")->insert($this->table, $keys, $vals);
-    }
-
-    public function getAll()
-    {
-        return $this->di->get("dbController")->get($this->table);
-    }
+    public $id;
+    public $poster;
+    public $content;
 }

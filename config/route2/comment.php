@@ -6,7 +6,7 @@ return [
             "info" => "Alla kommentarer.",
             "requestMethod" => "get",
             "path" => "comments",
-            "callable" => ["commentController", "getAllPosts"],
+            "callable" => ["commentController", "getIndex"],
         ],
     ]
 ];

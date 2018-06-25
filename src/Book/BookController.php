@@ -40,11 +40,11 @@ class BookController implements
         $title      = "A collection of items";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
-        // $book = new Book();
-        // $book->setDb($this->di->get("db"));
+        $book = new Book();
+        $book->setDb($this->di->get("db"));
 
         $data = [
-            "items" => $this->di->get("dbController")->get("Book"),
+            "items" => $book->findAll(),
         ];
 
         $view->add("book/crud/view-all", $data);

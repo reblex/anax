@@ -49,8 +49,8 @@ class DeleteForm extends FormModel
      */
     protected function getAllItems()
     {
-        $book = $this->di->get("book");
-        // $book->setDb($this->di->get("db"));
+        $book = new Book();
+        $book->setDb($this->di->get("db"));
 
         $books = ["-1" => "Select an item..."];
         foreach ($book->findAll() as $obj) {
@@ -70,8 +70,8 @@ class DeleteForm extends FormModel
      */
     public function callbackSubmit()
     {
-        $book = $this->di->get("book");
-        // $book->setDb($this->di->get("db"));
+        $book = new Book();
+        $book->setDb($this->di->get("db"));
         $book->find("id", $this->form->value("select"));
         $book->delete();
         $this->di->get("response")->redirect("book");
