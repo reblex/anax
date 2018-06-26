@@ -25,14 +25,17 @@ class CreateUserForm extends FormModel
                 "legend" => "Create user",
             ],
             [
-                "acronym" => [
+                "username" => [
                     "type"        => "text",
+                ],
+
+                "email" => [
+                    "type"        => "email",
                 ],
 
                 "password" => [
                     "type"        => "password",
                 ],
-
                 "password-again" => [
                     "type"        => "password",
                     "validation" => [
@@ -60,9 +63,10 @@ class CreateUserForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        $acronym       = $this->form->value("acronym");
-        $password      = $this->form->value("password");
-        $passwordAgain = $this->form->value("password-again");
+        $username       = $this->form->value("username");
+        $email          = $this->form->value("email");
+        $password       = $this->form->value("password");
+        $passwordAgain  = $this->form->value("password-again");
 
         // Check password matches
         if ($password !== $passwordAgain ) {
@@ -75,11 +79,13 @@ class CreateUserForm extends FormModel
         // $db = $this->di->get("db");
         // $password = password_hash($password, PASSWORD_DEFAULT);
         // $db->connect()
-        //    ->insert("User", ["acronym", "password"])
-        //    ->execute([$acronym, $password]);
+        //    ->insert("User", ["username", "password"])
+        //    ->execute([$username, $password]);
         $user = new User();
         $user->setDb($this->di->get("db"));
-        $user->acronym = $acronym;
+        $user->username = $username;
+        $user->email = $email;
+        $user->admin = 0;
         $user->setPassword($password);
         $user->save();
 

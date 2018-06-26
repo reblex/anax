@@ -7,6 +7,7 @@ use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 use \Anax\User\HTMLForm\UserLoginForm;
+use \Anax\User\HTMLForm\EditUserForm;
 use \Anax\User\HTMLForm\CreateUserForm;
 
 /**
@@ -39,15 +40,28 @@ class UserController implements
      */
     public function getIndex()
     {
-        $title      = "A index page";
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "Konto";
         $view       = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
+        $user = new User();
+
+        $username = $this->di->get("session")->get("account");
+        $user->username = $username;
+        $user->setDb($this->di->get("db"));
+        $user->findWhere("username = ?", $username);
+
+
         $data = [
-            "content" => "An index page",
+            "user" => $user,
         ];
 
-        $view->add("default2/article", $data);
+        $view->add("user/index", $data);
 
         $pageRender->renderPage(["title" => $title]);
     }
@@ -81,7 +95,39 @@ class UserController implements
         $pageRender->renderPage(["title" => $title]);
     }
 
+    /**
+     * Handler with form to update an item.
+     *
+     * @return void
+     */
+    public function getPostEditUser()
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
 
+        $title      = "Edit";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $username = $this->di->get("session")->get("account");
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        $form = new EditUserForm($this->di, $user);
+
+        $form->check();
+
+        $data = [
+            "form" => $form->getHTML(),
+        ];
+
+        $view->add("user/edit", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
 
     /**
      * Description.

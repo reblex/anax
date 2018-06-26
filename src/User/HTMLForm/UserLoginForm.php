@@ -58,16 +58,16 @@ class UserLoginForm extends FormModel
      public function callbackSubmit()
      {
          // Get values from the submitted form
-         $acronym       = $this->form->value("user");
-         $password      = $this->form->value("password");
+         $username       = $this->form->value("user");
+         $password       = $this->form->value("password");
 
          // Try to login
          // $db = $this->di->get("db");
          // $db->connect();
          // $user = $db->select("password")
          //            ->from("User")
-         //            ->where("acronym = ?")
-         //            ->executeFetch([$acronym]);
+         //            ->where("username = ?")
+         //            ->executeFetch([$username]);
          //
          // // $user is false if user is not found
          // if (!$user || !password_verify($password, $user->password)) {
@@ -78,15 +78,16 @@ class UserLoginForm extends FormModel
 
          $user = new User();
          $user->setDb($this->di->get("db"));
-         $res = $user->verifyPassword($acronym, $password);
+         $res = $user->verifyPassword($username, $password);
 
          if (!$res) {
             $this->form->rememberValues();
-            $this->form->addOutput("User or password did not match.");
+            // $this->form->addOutput("User or password did not match.");
             return false;
          }
 
-         $this->form->addOutput("User " . $user->acronym . " logged in.");
-         return true;
+         // $this->form->addOutput("User " . $user->username . " logged in.");
+         $this->di->get("session")->set("account", $username);
+         $this->di->get("response")->redirect("user");
      }
 }

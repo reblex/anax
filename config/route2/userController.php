@@ -17,6 +17,12 @@ return [
             "callable" => ["userController", "getPostLogin"],
         ],
         [
+            "info" => "Edit a user",
+            "requestMethod" => "get|post",
+            "path" => "edit",
+            "callable" => ["userController", "getPostEditUser"],
+        ],
+        [
             "info" => "Create a user.",
             "requestMethod" => "get|post",
             "path" => "create",
