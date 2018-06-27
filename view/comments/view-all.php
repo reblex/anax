@@ -8,6 +8,14 @@ use Anax\User\User;
 <br><br>
 
 <?php
+if ($data["currentAccount"] != "") {
+    $newCommentUrl = url("comments/new");
+    echo("<a href='$newCommentUrl'>Ny Kommentar</a>");
+    echo "<br/><br/>";
+}
+?>
+
+<?php
 foreach ($data["comments"] as $comment) {
     $commenter = new User();
     $commenter->setDb($this->di->get("db"));

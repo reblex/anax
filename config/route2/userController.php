@@ -11,6 +11,12 @@ return [
             "callable" => ["userController", "getIndex"],
         ],
         [
+            "info" => "User Controller index for Admin.",
+            "requestMethod" => "get",
+            "path" => "admin",
+            "callable" => ["userController", "getIndexAdmin"],
+        ],
+        [
             "info" => "Login a user.",
             "requestMethod" => "get|post",
             "path" => "login",

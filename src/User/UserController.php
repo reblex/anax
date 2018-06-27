@@ -56,7 +56,35 @@ class UserController implements
         $pageRender->renderPage(["title" => $title]);
     }
 
+    public function getIndexAdmin()
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
 
+        $title      = "Admin";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+
+        $username = $this->di->get("session")->get("account");
+        $user->username = $username;
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        $allUsers = new User();
+        $allUsers->setDb($this->di->get("db"));
+
+        $data = [
+            "users" => $allUsers->findAll(),
+        ];
+
+        $view->add("user/adminIndex", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
 
 
     public function getPostLogin()
