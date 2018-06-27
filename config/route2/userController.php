@@ -46,5 +46,11 @@ return [
             "path" => "admin/new",
             "callable" => ["userController", "getPostCreateUserAdmin"],
         ],
+        [
+            "info" => "Edit a user as admin.",
+            "requestMethod" => "get|post",
+            "path" => "admin/edit/{id:digit}",
+            "callable" => ["userController", "getPostEditUserAdmin"],
+        ],
     ]
 ];

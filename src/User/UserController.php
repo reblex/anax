@@ -10,6 +10,7 @@ use \Anax\User\HTMLForm\UserLoginForm;
 use \Anax\User\HTMLForm\EditUserForm;
 use \Anax\User\HTMLForm\CreateUserForm;
 use \Anax\User\HTMLForm\CreateUserAdminForm;
+use \Anax\User\HTMLForm\EditUserAdminForm;
 
 /**
  * A controller class.
@@ -201,6 +202,34 @@ class UserController implements
         ];
 
         $view->add("default2/article", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+    public function getPostEditUserAdmin($id)
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "Edit";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $user->setDb($this->di->get("db"));
+        $user->find("id", $id);
+
+        $form = new EditUserAdminForm($this->di, $user);
+
+        $form->check();
+
+        $data = [
+            "form" => $form->getHTML(),
+        ];
+
+        $view->add("user/edit", $data);
 
         $pageRender->renderPage(["title" => $title]);
     }
