@@ -1,14 +1,14 @@
 <?php
 namespace Anax\View;
 
-$urlToCreate = url("user/admin/create");
+$newAccountUrl = url("user/admin/new");
 $accountUrl = url("user/");
 ?>
 
 <h1>Admin</h1>
 
 <p>
-    <a href='<?= $urlToCreate ?>'>Ny</a>
+    <a href='<?= $newAccountUrl ?>'>Nytt konto</a>
 </p>
 
 <h3>Användare</h3>

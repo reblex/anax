@@ -40,5 +40,11 @@ return [
             "path" => "new",
             "callable" => ["userController", "getPostCreateUser"],
         ],
+        [
+            "info" => "Create a user as admin.",
+            "requestMethod" => "get|post",
+            "path" => "admin/new",
+            "callable" => ["userController", "getPostCreateUserAdmin"],
+        ],
     ]
 ];

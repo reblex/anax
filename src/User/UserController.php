@@ -9,6 +9,7 @@ use \Anax\Di\InjectionAwareTrait;
 use \Anax\User\HTMLForm\UserLoginForm;
 use \Anax\User\HTMLForm\EditUserForm;
 use \Anax\User\HTMLForm\CreateUserForm;
+use \Anax\User\HTMLForm\CreateUserAdminForm;
 
 /**
  * A controller class.
@@ -166,6 +167,40 @@ class UserController implements
         ];
 
         $view->add("user/new", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+    public function getPostCreateUserAdmin()
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "A create user page";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $username = $this->di->get("session")->get("account");
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        if ($user->admin != 1) {
+            $this->di->get("response")->redirect("user");
+        }
+
+        $form       = new CreateUserAdminForm($this->di);
+
+        $form->check();
+
+        $data = [
+            "content" => $form->getHTML(),
+        ];
+
+        $view->add("default2/article", $data);
 
         $pageRender->renderPage(["title" => $title]);
     }

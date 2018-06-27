@@ -9,51 +9,49 @@ use \Anax\User\User;
 /**
  * Example of FormModel implementation.
  */
-class EditUserForm extends FormModel
+class CreateUserAdminForm extends FormModel
 {
     /**
      * Constructor injects with DI container.
      *
      * @param Anax\DI\DIInterface $di a service container
-     * @param Anax\User           $user to update
      */
-    public function __construct(DIInterface $di, $user)
+    public function __construct(DIInterface $di)
     {
         parent::__construct($di);
+
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Update details of the item",
+                "legend" => "Create user",
             ],
             [
-                "id" => [
-                    "type" => "hidden",
-                    "value" => $user->id,
-                ],
                 "username" => [
-                    "type" => "text",
-                    "validation" => ["not_empty"],
-                    "value" => $user->username,
+                    "type"        => "text",
                 ],
 
                 "email" => [
-                    "type" => "text",
-                    "validation" => ["not_empty"],
-                    "value" => $user->email,
+                    "type"        => "email",
+                ],
+
+                "password" => [
+                    "type"        => "password",
+                ],
+                "admin" => [
+                    "type"        => "checkbox",
+                    "label"       => "Admin",
+                    "checked"     => false
                 ],
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Save",
+                    "value" => "Create user",
                     "callback" => [$this, "callbackSubmit"]
-                ],
-
-                "reset" => [
-                    "type"      => "reset",
                 ],
             ]
         );
     }
+
 
 
     /**
@@ -62,13 +60,20 @@ class EditUserForm extends FormModel
      *
      * @return boolean true if okey, false if something went wrong.
      */
-    public function callbackSubmit()
-    {
+     public function callbackSubmit()
+     {
+        // Get values from the submitted form
+        $username       = $this->form->value("username");
+        $email          = $this->form->value("email");
+        $password       = $this->form->value("password");
+        $admin          = $this->form->value("admin") == true ? 1 : 0;
+
         $user = new User();
         $user->setDb($this->di->get("db"));
-        $user->find("id", $this->form->value("id"));
-        $user->username = $this->form->value("username");
-        $user->email = $this->form->value("email");
+        $user->username = $username;
+        $user->email = $email;
+        $user->admin = $admin;
+        $user->setPassword($password);
         try {
             $user->save();
         } catch (\Exception $e) {
@@ -77,8 +82,7 @@ class EditUserForm extends FormModel
             return false;
         }
 
-        $this->di->get("session")->set("account", $user->username);
-        $this->di->get("response")->redirect("user");
-        return true;
-    }
+        $this->form->addOutput("Användare skapad!");
+        $this->di->get("response")->redirect("user/admin");
+     }
 }
