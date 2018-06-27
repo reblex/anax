@@ -69,8 +69,15 @@ class EditUserForm extends FormModel
         $user->find("id", $this->form->value("id"));
         $user->username = $this->form->value("username");
         $user->email = $this->form->value("email");
-        $user->save();
-        $this->di->get("response")->redirect("user/edit");
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            $this->form->addOutput("Användarnamn/Email används redan!");
+            return false;
+        }
+        
+        $this->di->get("session")->set("account", $user->username);
+        $this->di->get("response")->redirect("user");
         return true;
     }
 }
