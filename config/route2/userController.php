@@ -17,6 +17,12 @@ return [
             "callable" => ["userController", "getPostLogin"],
         ],
         [
+            "info" => "Logout",
+            "requestMethod" => "get",
+            "path" => "logout",
+            "callable" => ["userController", "getLogout"],
+        ],
+        [
             "info" => "Edit a user",
             "requestMethod" => "get|post",
             "path" => "edit",

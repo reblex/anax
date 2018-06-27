@@ -17,14 +17,13 @@
 <br>
 
 <a href="<?= url("user/edit") ?>">Edit</a> |
-
 <?php
 if ($user->admin == 1) {
     $adminLink = url("user/admin");
-    echo("<a href='$adminLink'>Admin</a> |");
+    echo("<a href='$adminLink'>Admin</a> | ");
 }
+
+$logoutLink = url("user/logout");
 ?>
-<?php
-$commentsLink = url("commnets/user/$user->username");
-?>
-<a href="<?= $commentsLink?>">Kommentarer</a>
+
+<a href="<?= $logoutLink?>">Logga ut</a>

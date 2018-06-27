@@ -28,16 +28,6 @@ class UserController implements
     //private $data;
 
 
-
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return void
-     */
     public function getIndex()
     {
         // Render login page if not logged in.
@@ -68,15 +58,7 @@ class UserController implements
 
 
 
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return void
-     */
+
     public function getPostLogin()
     {
         $title      = "A login page";
@@ -93,6 +75,18 @@ class UserController implements
         $view->add("default2/article", $data);
 
         $pageRender->renderPage(["title" => $title]);
+    }
+
+
+    public function getLogout()
+    {
+        $session = $this->di->get("session");
+
+        if ($session->has("account")) {
+            $session->delete("account");
+        }
+
+        $this->di->get("response")->redirect("user/login");
     }
 
     /**
@@ -129,15 +123,7 @@ class UserController implements
         $pageRender->renderPage(["title" => $title]);
     }
 
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return void
-     */
+
     public function getPostCreateUser()
     {
         $title      = "A create user page";
