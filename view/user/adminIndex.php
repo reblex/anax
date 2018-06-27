@@ -2,14 +2,16 @@
 namespace Anax\View;
 
 $urlToCreate = url("user/admin/create");
+$accountUrl = url("user/");
 ?>
 
 <h1>Admin</h1>
-<h3>Användare</h3>
 
 <p>
-    <a href='<?= $urlToCreate ?>'>Create</a>
+    <a href='<?= $urlToCreate ?>'>Ny</a>
 </p>
+
+<h3>Användare</h3>
 
 <table>
     <tr>
@@ -29,3 +31,6 @@ $urlToCreate = url("user/admin/create");
     </tr>
     <?php endforeach; ?>
 </table>
+
+<br><br>
+<a href="<?= url("user") ?>">Tillbaka till mitt konto</a>
