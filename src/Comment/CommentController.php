@@ -16,22 +16,6 @@ class CommentController implements InjectionAwareInterface
 {
     use InjectionAwareTrait;
 
-
-    // public function makePost()
-    // {
-    //     $poster = getPost("poster") ?: "";
-    //     $content = getPost("content") ?: "";
-    //     return $this->di->get("comment")->makePost($poster, $content);
-    // }
-    //
-    // public function getAllPosts()
-    // {
-    //     $comments = $this->di->get("comment")->getAll();
-    //     $this->di->get("view")->add("comments/comments", ["content" => $comments], "main");
-    //     $this->di->get("pageRender")->renderPage(["title" => "Kommentarer"]);
-    // }
-    //
-
     /**
      * Show all items.
      *
@@ -145,53 +129,38 @@ class CommentController implements InjectionAwareInterface
         $pageRender->renderPage(["title" => $title]);
     }
 
-    //
-    //
-    // /**
-    //  * Handler with form to delete an item.
-    //  *
-    //  * @return void
-    //  */
-    // public function getPostDeleteItem()
-    // {
-    //     $title      = "Delete an item";
-    //     $view       = $this->di->get("view");
-    //     $pageRender = $this->di->get("pageRender");
-    //     $form       = new DeleteForm($this->di);
-    //
-    //     $form->check();
-    //
-    //     $data = [
-    //         "form" => $form->getHTML(),
-    //     ];
-    //
-    //     $view->add("book/crud/delete", $data);
-    //
-    //     $pageRender->renderPage(["title" => $title]);
-    // }
-    //
-    //
-    //
-    // /**
-    //  * Handler with form to update an item.
-    //  *
-    //  * @return void
-    //  */
-    // public function getPostUpdateItem($id)
-    // {
-    //     $title      = "Update an item";
-    //     $view       = $this->di->get("view");
-    //     $pageRender = $this->di->get("pageRender");
-    //     $form       = new UpdateForm($this->di, $id);
-    //
-    //     $form->check();
-    //
-    //     $data = [
-    //         "form" => $form->getHTML(),
-    //     ];
-    //
-    //     $view->add("book/crud/update", $data);
-    //
-    //     $pageRender->renderPage(["title" => $title]);
-    // }
+    /**
+     * Handler with form to edit a comment.
+     *
+     * @return void
+     */
+    public function getDeleteComment($id)
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "Create a comment";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $username = $this->di->get("session")->get("account");
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        $comment = new Comment();
+        $comment->setDb($this->di->get("db"));
+        $comment->find("id", $id);
+
+        // Not that users comment, and not admin
+        if ($comment->userId != $user->id && $user->admin != 1) {
+            $this->di->get("response")->redirect("comments");
+        }
+
+        $comment->delete();
+
+        $this->di->get("response")->redirect("comments");
+    }
 }
