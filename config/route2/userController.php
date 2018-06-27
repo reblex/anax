@@ -37,7 +37,7 @@ return [
         [
             "info" => "Create a user.",
             "requestMethod" => "get|post",
-            "path" => "create",
+            "path" => "new",
             "callable" => ["userController", "getPostCreateUser"],
         ],
     ]

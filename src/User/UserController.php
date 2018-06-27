@@ -100,7 +100,7 @@ class UserController implements
             "content" => $form->getHTML(),
         ];
 
-        $view->add("default2/article", $data);
+        $view->add("user/login", $data);
 
         $pageRender->renderPage(["title" => $title]);
     }
@@ -165,7 +165,7 @@ class UserController implements
             "content" => $form->getHTML(),
         ];
 
-        $view->add("default2/article", $data);
+        $view->add("user/new", $data);
 
         $pageRender->renderPage(["title" => $title]);
     }

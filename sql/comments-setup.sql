@@ -4,7 +4,7 @@ CREATE TABLE `comments`
     `id` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     `userId` INT NOT NULL,
     `datetime` DATETIME,
-    `content` VARCHAR(400)
+    `content` VARCHAR(800)
 );
 
 DELETE FROM `comments`;

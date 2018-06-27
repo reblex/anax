@@ -32,6 +32,7 @@ class CreateCommentForm extends FormModel
                 ],
                 "comment" => [
                     "type"        => "textarea",
+                    "description" => "Max 800 karaktärer."
                 ],
 
                 "submit" => [
