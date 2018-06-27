@@ -13,6 +13,6 @@ class Comment extends ActiveRecordModel
     protected $tableName = "comments";
 
     public $id;
-    public $poster;
+    public $userId;
     public $content;
 }

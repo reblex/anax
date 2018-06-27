@@ -4,6 +4,8 @@ namespace Anax\Comment;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use \Anax\User\User;
+use \Anax\Comment\HTMLForm\CreateCommentForm;
 
 /**
  * Comment Controller.
@@ -41,8 +43,20 @@ class CommentController implements InjectionAwareInterface
         $comment = new Comment();
         $comment->setDb($this->di->get("db"));
 
+        $account = $this->di->get("session")->get("account") ?: "";
+        $currentUserRights = "none";
+
+        if ($account != "") {
+            $user = new User();
+            $user->setDb($this->di->get("db"));
+            $user->find("username", $account);
+            $currentUserRights = $user->admin == 1 ? "admin" : "user";
+        }
+
         $data = [
-            "content" => $comment->findAll(),
+            "comments" => $comment->findAll(),
+            "currentAccount" => $account,
+            "currentUserRights" => $currentUserRights
         ];
 
         $view->add("comments/view-all", $data);
@@ -51,30 +65,41 @@ class CommentController implements InjectionAwareInterface
     }
 
 
-    //
-    // /**
-    //  * Handler with form to create a new item.
-    //  *
-    //  * @return void
-    //  */
-    // public function getPostCreateItem()
-    // {
-    //     $title      = "Create a item";
-    //     $view       = $this->di->get("view");
-    //     $pageRender = $this->di->get("pageRender");
-    //     $form       = new CreateForm($this->di);
-    //
-    //     $form->check();
-    //
-    //     $data = [
-    //         "form" => $form->getHTML(),
-    //     ];
-    //
-    //     $view->add("book/crud/create", $data);
-    //
-    //     $pageRender->renderPage(["title" => $title]);
-    // }
-    //
+
+    /**
+     * Handler with form to create a new item.
+     *
+     * @return void
+     */
+    public function getPostNewComment()
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "Create a comment";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $username = $this->di->get("session")->get("account");
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        $form = new CreateCommentForm($this->di, $user);
+
+        $form->check();
+
+        $data = [
+            "form" => $form->getHTML(),
+        ];
+
+        $view->add("comments/new", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
     //
     //
     // /**

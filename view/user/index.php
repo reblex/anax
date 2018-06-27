@@ -25,6 +25,6 @@ if ($user->admin == 1) {
 }
 ?>
 <?php
-$commentsLink = url("commnets/user/") . $user->username;
+$commentsLink = url("commnets/user/$user->username");
 ?>
 <a href="<?= $commentsLink?>">Kommentarer</a>
