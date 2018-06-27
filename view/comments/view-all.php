@@ -24,7 +24,9 @@ foreach ($data["comments"] as $comment) {
     $commenter->setDb($this->di->get("db"));
     $commenter->find("id", $comment->userId);
 
-    echo("<div style='border: solid 2px gray; padding:5px; max-width: 400px;'><i style='font-size:20px'>{$commenter->username}</i>");
+    $username = $commenter->username == NULL ? "(Removed account)" : $commenter->username;
+
+    echo("<div style='border: solid 2px gray; padding:5px; max-width: 400px;'><i style='font-size:20px'>$username</i>");
     echo("<p style='font-size:20px'>{$comment->content}</p>");
 
     if ($data["currentAccount"] == $commenter->username || $data["currentUserRights"] == "admin") {

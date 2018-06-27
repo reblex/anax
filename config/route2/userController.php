@@ -52,5 +52,11 @@ return [
             "path" => "admin/edit/{id:digit}",
             "callable" => ["userController", "getPostEditUserAdmin"],
         ],
+        [
+            "info" => "Delete a user as admin.",
+            "requestMethod" => "get",
+            "path" => "admin/delete/{id:digit}",
+            "callable" => ["userController", "getDeleteUserAdmin"],
+        ],
     ]
 ];

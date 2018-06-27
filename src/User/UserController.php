@@ -233,4 +233,34 @@ class UserController implements
 
         $pageRender->renderPage(["title" => $title]);
     }
+
+    public function getDeleteUserAdmin($id)
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "Create a comment";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $username = $this->di->get("session")->get("account");
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        //  Not admin
+        if ($user->admin != 1) {
+            $this->di->get("response")->redirect("user");
+        }
+
+        $userToDelete = new User();
+        $userToDelete->setDb($this->di->get("db"));
+        $userToDelete->find("id", $id);
+
+        $userToDelete->delete();
+
+        $this->di->get("response")->redirect("user/admin");
+    }
 }
