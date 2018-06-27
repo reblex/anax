@@ -4,7 +4,7 @@
     $user = $data["user"];
     $default = "https://www.gravatar.com/avatar/";
     $size = 40;
-    $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+    $grav_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($user->email))) . "?d=" . urlencode($default) . "&s=" . $size;
 ?>
 <br>
 <br>

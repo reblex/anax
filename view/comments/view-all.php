@@ -24,7 +24,7 @@ foreach ($data["comments"] as $comment) {
     $commenter->setDb($this->di->get("db"));
     $commenter->find("id", $comment->userId);
 
-    $username = $commenter->username == NULL ? "(Removed account)" : $commenter->username;
+    $username = $commenter->username == null ? "(Removed account)" : $commenter->username;
 
     echo("<div style='border: solid 2px gray; padding:5px; max-width: 400px;'><i style='font-size:20px'>$username</i>");
     echo("<p style='font-size:20px'>{$comment->content}</p>");

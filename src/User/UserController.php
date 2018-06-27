@@ -241,10 +241,6 @@ class UserController implements
             $this->di->get("response")->redirect("user/login");
         }
 
-        $title      = "Create a comment";
-        $view       = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $user = new User();
         $username = $this->di->get("session")->get("account");
         $user->setDb($this->di->get("db"));

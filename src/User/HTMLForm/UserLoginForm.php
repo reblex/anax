@@ -50,44 +50,28 @@ class UserLoginForm extends FormModel
 
 
     /**
-     * Callback for submit-button which should return true if it could
-     * carry out its work and false if something failed.
-     *
-     * @return boolean true if okey, false if something went wrong.
-     */
-     public function callbackSubmit()
-     {
-         // Get values from the submitted form
-         $username       = $this->form->value("user");
-         $password       = $this->form->value("password");
+    * Callback for submit-button which should return true if it could
+    * carry out its work and false if something failed.
+    *
+    * @return boolean true if okey, false if something went wrong.
+    */
+    public function callbackSubmit()
+    {
+        // Get values from the submitted form
+        $username       = $this->form->value("user");
+        $password       = $this->form->value("password");
 
-         // Try to login
-         // $db = $this->di->get("db");
-         // $db->connect();
-         // $user = $db->select("password")
-         //            ->from("User")
-         //            ->where("username = ?")
-         //            ->executeFetch([$username]);
-         //
-         // // $user is false if user is not found
-         // if (!$user || !password_verify($password, $user->password)) {
-         //    $this->form->rememberValues();
-         //    $this->form->addOutput("User or password did not match.");
-         //    return false;
-         // }
+        $user = new User();
+        $user->setDb($this->di->get("db"));
+        $res = $user->verifyPassword($username, $password);
 
-         $user = new User();
-         $user->setDb($this->di->get("db"));
-         $res = $user->verifyPassword($username, $password);
-
-         if (!$res) {
+        if (!$res) {
             $this->form->rememberValues();
-            // $this->form->addOutput("User or password did not match.");
+            $this->form->addOutput("User and password did not match.");
             return false;
-         }
+        }
 
-         // $this->form->addOutput("User " . $user->username . " logged in.");
-         $this->di->get("session")->set("account", $username);
-         $this->di->get("response")->redirect("user");
-     }
+        $this->di->get("session")->set("account", $username);
+        $this->di->get("response")->redirect("user");
+    }
 }

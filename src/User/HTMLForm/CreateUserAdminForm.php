@@ -55,13 +55,13 @@ class CreateUserAdminForm extends FormModel
 
 
     /**
-     * Callback for submit-button which should return true if it could
-     * carry out its work and false if something failed.
-     *
-     * @return boolean true if okey, false if something went wrong.
-     */
-     public function callbackSubmit()
-     {
+    * Callback for submit-button which should return true if it could
+    * carry out its work and false if something failed.
+    *
+    * @return boolean true if okey, false if something went wrong.
+    */
+    public function callbackSubmit()
+    {
         // Get values from the submitted form
         $username       = $this->form->value("username");
         $email          = $this->form->value("email");
@@ -84,5 +84,5 @@ class CreateUserAdminForm extends FormModel
 
         $this->form->addOutput("Användare skapad!");
         $this->di->get("response")->redirect("user/admin");
-     }
+    }
 }
