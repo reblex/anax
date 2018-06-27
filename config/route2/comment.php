@@ -14,5 +14,11 @@ return [
             "path" => "comments/new",
             "callable" => ["commentController", "getPostNewComment"],
         ],
+        [
+            "info" => "Edit kommentar.",
+            "requestMethod" => "get|post",
+            "path" => "comments/edit/{id:digit}",
+            "callable" => ["commentController", "getPostEditComment"],
+        ],
     ]
 ];

@@ -18,8 +18,8 @@ foreach ($data["comments"] as $comment) {
 
     if ($data["currentAccount"] == $commenter->username || $data["currentUserRights"] == "admin") {
         echo("<br/>");
-        $editUrl = url("comments/$comment->id/edit");
-        $deleteUrl = url("comments/$comment->id/delete");
+        $editUrl = url("comments/edit/$comment->id");
+        $deleteUrl = url("comments/delete/$comment->id");
         echo("<a href='$editUrl'>Edit</a> ");
         echo("<a href='$deleteUrl'>Delete</a>");
     }

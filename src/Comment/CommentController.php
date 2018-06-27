@@ -5,7 +5,9 @@ namespace Anax\Comment;
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
 use \Anax\User\User;
+use \Anax\Comment\Comment;
 use \Anax\Comment\HTMLForm\CreateCommentForm;
+use \Anax\Comment\HTMLForm\EditCommentForm;
 
 /**
  * Comment Controller.
@@ -88,6 +90,49 @@ class CommentController implements InjectionAwareInterface
         $user->find("username", $username);
 
         $form = new CreateCommentForm($this->di, $user);
+
+        $form->check();
+
+        $data = [
+            "form" => $form->getHTML(),
+        ];
+
+        $view->add("comments/new", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+    /**
+     * Handler with form to edit a comment.
+     *
+     * @return void
+     */
+    public function getPostEditComment($id)
+    {
+        // Render login page if not logged in.
+        if (!$this->di->get("session")->has("account")) {
+            $this->di->get("response")->redirect("user/login");
+        }
+
+        $title      = "Create a comment";
+        $view       = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $user = new User();
+        $username = $this->di->get("session")->get("account");
+        $user->setDb($this->di->get("db"));
+        $user->find("username", $username);
+
+        $comment = new Comment();
+        $comment->setDb($this->di->get("db"));
+        $comment->find("id", $id);
+
+        // Not that users comment, and not admin
+        if ($comment->userId != $user->id && $user->admin != 1) {
+            $this->di->get("response")->redirect("comments");
+        }
+
+        $form = new EditCommentForm($this->di, $comment);
 
         $form->check();
 
