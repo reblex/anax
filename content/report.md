@@ -97,3 +97,42 @@ kladdigt och det är många kall fram och tillbaka.
 Dock känner jag nog så främst för att man är tvungen att ändra mycket fram och tillbaka
 genom de olika kursmomenten. DI har gjort allt lite mindre rörigt, men allt är inte helt
 hur jag skulle vilja ha det.
+
+##Kmom04
+
+**Hur gick det att integrera formulärhantering och databashantering i ditt kommentarssystem?**
+
+Jag hade gjort en egen databashantering för att hantera kommentarssystemet, dock fick jag slopa det
+eftersom det blev för mycket svårigheter att få det att fungera med allt annat som man scaffoldar.
+Jag valde därför att implementera Anax-databasen och active record, vilket gick lätt.
+
+Formulärhantering var ganska smidigt när man väl lärt sig och efter ett par stycken gick det snabbt
+att skapa nya. Dock var det lite krångligt om man ville ändra något annat än värden och input-typer
+i formuläret, men det var inget jag behövde göra så mycket.
+
+**Berätta om din syn på Active record och liknande upplägg, ser du fördelar och nackdelar?**
+
+Det gjorde det smidigt att implementera databashantering i flera olika moduler så som book,
+comment och user. Att bara kunna skicka in en databas och använda save() var rätt smidigt.
+Dock är ju problemet med sådana upplägg alltid att om man behöver göra något som inte finns
+inbyggt blir det lite krångligt.
+
+**Utveckla din syn på koden du nu har i ramverket och din kommentars- och användarkod. Hur känns det?**
+
+Jag gillar hur de olika modulerna är separata och finns under src-mappen, även fast de kanske är beroende
+av varandra. Det bästa med att sköta all(eller näst intill) funktionalitet i modeller/controlers är
+att vyerna blir *mycket* enklare att arbeta med. Det känns riktigt skönt att slippa ha massa kod i vyerna
+som bara är i vägen.
+
+**Om du vill, och har kunskap om, kan du även berätta om din syn på ORM och designmönstret Data Mapper som är närbesläktade med Active Record.
+Du kanske har erfarenhet av likande upplägg i andra sammanhang?**
+
+*Inte tillräckligt insatt för att kunna ge något svar.*
+
+**Vad tror du om begreppet scaffolding, kan det vara något att kika mer på?**
+
+Jag tror att det finns bra användingsområden för scaffolding, men samtidigt finns det en del problem.
+Scaffolding är bra om man behöver göra många enkla och snabba saker som bara behöver lite konfigurering
+för att fungera. Ska man sätta upp en hemsida för någon liten tjänst är det smidigt att inte behöva börja
+från grunden. Dock brister det såklart när man behöver göra mer avancerade saker som inte finns inbyggt i
+den scaffoldade strukturen. Men som sagt, det finns defenitivt flera användingsområden.
