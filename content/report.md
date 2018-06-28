@@ -136,3 +136,39 @@ Scaffolding är bra om man behöver göra många enkla och snabba saker som bara
 för att fungera. Ska man sätta upp en hemsida för någon liten tjänst är det smidigt att inte behöva börja
 från grunden. Dock brister det såklart när man behöver göra mer avancerade saker som inte finns inbyggt i
 den scaffoldade strukturen. Men som sagt, det finns defenitivt flera användingsområden.
+
+##Kmom05
+
+**Hur gick arbetet med att lyfta ut koden ur me-sidan och placera i en egen modul?**
+
+Det var lite klurigt först. Det svåra var att komma på exakt vad som behövdes för helheten.
+Det tog några försök men tillslut klarade jag det!
+
+**Flöt det på bra med GitHub och kopplingen till Packagist?**
+
+Japp det var inga problem.
+
+**Hur gick det att åter installera modulen i din me-sida med composer, kunde du följa du din installationsmanual?**
+
+Jag gjorde kursmomentet lite baklänges och började med att sätta in den utbrytna modulen
+i me-sidan innan jag testade på ett helt nytt scaffoldat projekt. Blev lite knöligt och
+jag vet inte riktigt varför jag gjorde så. Men när jag väl fått det att fungera både
+på ett nytt scaffoldat projekt fungerade allt som det skulle även i me-sidan.
+
+**Hur väl lyckas du enhetstesta din modul och hur mycket kodtäckning fick du med?**
+
+Det var lite konstigt hur man var tvungen att mocka DI för att få det att fungera.
+Jag valde även att använda sqlite som databas för testerna då jag tyckte det var
+en smidigare miljö för tester. Jag skrev bara ett test för att visa att jag fått
+PHPUnit att funka, så brydde mig inte riktigt om kodtäckning.
+
+Jag hade lite problem med att XDebug tydligen inte var isntallerat och att min
+konfigurationsfil för PHP inte laddades. Dock lyckades jag lösa det med utan allt
+för stora problem, och jag lärde mig en hel del på vägen. Var kul att se att jag
+har ganska bra koll på linuxterminalen.
+
+**Några reflektioner över skillnaden med och utan modul?**
+
+Jag har länge varit en fanboy av moduler och tycker det är mycket smidigt att bryta
+ut funktionalitet. Det gör ens kodbas tydligare och tillåter modulen användas i andra
+projekt.

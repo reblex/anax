@@ -853,12 +853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reblex/comment.git",
-                "reference": "db96dd6e53a79762f08af42d2f66f4181b5fcc34"
+                "reference": "02dc2c3e0780ee9aafa81925cdf300ed974b9891"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reblex/comment/zipball/db96dd6e53a79762f08af42d2f66f4181b5fcc34",
-                "reference": "db96dd6e53a79762f08af42d2f66f4181b5fcc34",
+                "url": "https://api.github.com/repos/reblex/comment/zipball/02dc2c3e0780ee9aafa81925cdf300ed974b9891",
+                "reference": "02dc2c3e0780ee9aafa81925cdf300ed974b9891",
                 "shasum": ""
             },
             "require": {
