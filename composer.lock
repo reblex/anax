@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "17288165d8bb9e2158a1a432ba10e053",
+    "content-hash": "c399a4b1af3caf4ca75f615fbd900d34",
     "packages": [
         {
             "name": "anax/common",
@@ -496,16 +496,16 @@
         },
         {
             "name": "anax/textfilter",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/textfilter.git",
-                "reference": "ee7d68673f7004357643d13c5f1d3a54e7b00177"
+                "reference": "6403976f29e21cb1cdbe031b5374b62296bdc519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/textfilter/zipball/ee7d68673f7004357643d13c5f1d3a54e7b00177",
-                "reference": "ee7d68673f7004357643d13c5f1d3a54e7b00177",
+                "url": "https://api.github.com/repos/canax/textfilter/zipball/6403976f29e21cb1cdbe031b5374b62296bdc519",
+                "reference": "6403976f29e21cb1cdbe031b5374b62296bdc519",
                 "shasum": ""
             },
             "require": {
@@ -546,7 +546,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2018-05-24T20:26:07+00:00"
+            "time": "2018-06-26T11:33:05+00:00"
         },
         {
             "name": "anax/url",
@@ -848,6 +848,56 @@
             "time": "2017-11-06T09:24:47+00:00"
         },
         {
+            "name": "reblex/comment",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reblex/comment.git",
+                "reference": "6fb578ca761307e5ffd829387b7ed12ce3edabf7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reblex/comment/zipball/6fb578ca761307e5ffd829387b7ed12ce3edabf7",
+                "reference": "6fb578ca761307e5ffd829387b7ed12ce3edabf7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Anax\\": "src/",
+                    "reblex\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Wahlström",
+                    "email": "simon.otdw@gmail.com",
+                    "homepage": "https://dbwebb.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Anax comment module.",
+            "homepage": "https://dbwebb.se/anax",
+            "keywords": [
+                "boilerplate",
+                "education",
+                "framework",
+                "micro",
+                "mvc"
+            ],
+            "support": {
+                "issues": "https://github.com/canax/comment/issues",
+                "source": "https://github.com/reblex/comment/tree/master"
+            },
+            "time": "2018-06-28 08:17:18"
+        },
+        {
             "name": "scrivo/highlight.php",
             "version": "v9.12.0.3",
             "source": {
@@ -959,7 +1009,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -1020,7 +1070,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "reblex/comment": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

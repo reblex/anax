@@ -15,9 +15,19 @@
         "symfony/yaml": "^3.3",
         "anax/page": "^1.1",
         "anax/htmlform": "^1.1",
-        "anax/database": "^1.1"
+        "anax/database": "^1.1",
+        "reblex/comment": "dev-master"
     },
     "autoload": {
-        "psr-4": {"Anax\\": "src/"}
-    }
+        "psr-4": {
+            "Anax\\": "src/",
+            "reblex\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/reblex/comment.git"
+        }
+    ]
 }

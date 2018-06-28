@@ -1,7 +1,7 @@
 <?php
 namespace Anax\View;
 
-use Anax\User\User;
+use reblex\User\User;
 ?>
 
 <h1><u>Kommentarer</u></h1>
