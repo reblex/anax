@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c399a4b1af3caf4ca75f615fbd900d34",
+    "content-hash": "f49d6bb02369ea9a0b111484bc0e6945",
     "packages": [
         {
             "name": "anax/common",
@@ -849,16 +849,16 @@
         },
         {
             "name": "reblex/comment",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reblex/comment.git",
-                "reference": "6fb578ca761307e5ffd829387b7ed12ce3edabf7"
+                "reference": "db96dd6e53a79762f08af42d2f66f4181b5fcc34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reblex/comment/zipball/6fb578ca761307e5ffd829387b7ed12ce3edabf7",
-                "reference": "6fb578ca761307e5ffd829387b7ed12ce3edabf7",
+                "url": "https://api.github.com/repos/reblex/comment/zipball/db96dd6e53a79762f08af42d2f66f4181b5fcc34",
+                "reference": "db96dd6e53a79762f08af42d2f66f4181b5fcc34",
                 "shasum": ""
             },
             "require": {
@@ -871,6 +871,7 @@
                     "reblex\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -891,11 +892,7 @@
                 "micro",
                 "mvc"
             ],
-            "support": {
-                "issues": "https://github.com/canax/comment/issues",
-                "source": "https://github.com/reblex/comment/tree/master"
-            },
-            "time": "2018-06-28 08:17:18"
+            "time": "2018-06-28T08:21:12+00:00"
         },
         {
             "name": "scrivo/highlight.php",
@@ -1070,9 +1067,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "reblex/comment": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
