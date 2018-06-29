@@ -172,3 +172,42 @@ har ganska bra koll på linuxterminalen.
 Jag har länge varit en fanboy av moduler och tycker det är mycket smidigt att bryta
 ut funktionalitet. Det gör ens kodbas tydligare och tillåter modulen användas i andra
 projekt.
+
+##Kmom06
+
+**Har du någon erfarenhet av automatiserade testar och CI sedan tidigare?**
+
+Yep! Jag har gjort det i flera tidigare kurser och har även hållt på med det
+i lite olika fritidsprojekt. Både angående tester samt CI.
+
+**Hur ser du på begreppen, bra, onödigt, nödvändigt, tidskrävande?**
+
+Det kan vara tidskrävande att sätta upp en CI, men när man väl har strukturen är det
+väldigt smidigt. Har man ett lite större projekt tycker jag defenitvt det är värt.
+Enhetstester är viktiga för att vara säker att ett system fungerar hela vägen genom
+utvecklingsprocessen och även efteråt, jag skulle klassa det som nödvändigt så fort
+projektet är mer än ett litet script.
+
+**Hur stor kodtäckning lyckades du uppnå i din modul?**
+
+Fattar inte riktigt det. Jag får ut 0% av scrutenizer men inte av phpunit själv, dock
+förstår jag inte hur man ser en totalsumma där. Grejen är att all min SRC-kod(i stort sätt)
+bara genererar vyer. Funktionaliteten är inte så utbryten i funktioner som faktist returnera
+något, vilket skulle gått att testa. Visst, comment och user använder ARM, men vad är poängen
+med att testa det? Då ska väl snarare sagt ARM ha sina egna enhetstester.
+
+Hur som helst gjorde jag 5 tester som testade lite allt möjligt, och nu vill jag
+bara komma vidare till projektet.
+
+**Berätta hur det gick att integrera mot de olika externa tjänsterna?**
+
+Konfigurationsfilerna är alltid lite störiga att jobba med. Ibland tror man att man
+har gjort rätt, men man måste pusha nya ändringar och sedan vänta för att se om
+allt faktiskt fungerade..vilket det inte alltid gjorde. Fick göra en hög med massa
+"fösrök1..försök2"-commits, men fick det att fungera tillslut.
+
+**Vilken extern tjänst uppskattade du mest, eller har du förslag på ytterligare externa tjänster att använda?**
+
+Travis är en av mina favoriter. Lätt att sätta upp(i vanliga fall) och enkelt att
+konfigurera. Dock gillade jag scrutenizer, det är säkert något jag kan kolla mer på
+i framtiden.
