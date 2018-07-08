@@ -211,3 +211,44 @@ allt faktiskt fungerade..vilket det inte alltid gjorde. Fick göra en hög med m
 Travis är en av mina favoriter. Lätt att sätta upp(i vanliga fall) och enkelt att
 konfigurera. Dock gillade jag scrutenizer, det är säkert något jag kan kolla mer på
 i framtiden.
+
+
+## Kmom10
+
+### Projektidé
+
+Jag valde att göra ett forum som heter Discuss. Hela strukturen för posts, svar och kommentarer är implementerad som om det varit stack-overflow, tanken är bara att sidan är ett forum för att diskutera idéer.
+
+### Implementerade krav
+
+*Jag har implementerat grundkraven 1, 2 och 3.*
+
+**Struktur**
+
+Då projektets bas centrerades kring ett kommentarssystem började jag med att vidareutveckla databasstrukturen jag skapat i kommentarsmodulen. Nu krävdes lite mer funktionalitet, så jag var tvungen att ändra på lite saker. Då man både skulle kunna kommentera på en post, men även på ett svar valde jag att använda mig av ett fält för *parentCommentID*. Detta är vad som tillåter mig att se om en kommentar ska skrivas ut som ett svar, eller som en kommentar till ett svar. Jag lät även varje kommentar ha ett fält för vilken post den tillhör, för att snabbare kunna söka upp alla kommentarer som önskas för en post.
+
+Vidare skapade jag strukturen kring posts och taggar. De är i sig själva väldigt simpla då de inte behöver spara mycket information. Jag ville se till att bara ha ett värde/kolumn, så för att kunna ha flera taggar på en post skapade jag en linktabell mellan taggar och posts. I eftertanke skulle jag kunnat använda en liknande struktur även för kommentarerna.
+
+**Funktionalitet**
+
+Funktionalitetsmässigt började jag med att utveckla hantering för att skapa och visa upp posts. Detta var inte så svårt eftersom strukturen redan var på plats. Det som var klurigast var hantering med taggar. Jag ville att man skulle kunna använda sig av hashtags varsomhelst i texten, så jag implementerade en lösning med regex för att plocka ut taggarna. Sedan skapar jag nya tagg-objekt för varje tagg och även ett så kallat *PostTag*-objekt för att skapa kopplingen för taggen till posten. För att se alla posts för en specifik tagg gör jag bara detta baklänges och hämtar alla posts som är linkade till taggen genom tabellen *PostTag*. Posts, så väl som kommentarer hanterar även Markdown.
+
+Användare fick jag med mig nästan helt komplett från min kommentarsmodul. Jag har även med adminfunktionaliteten, som inte var ett krav för detta projektet. Gravatarbild och profilredigering är även det inkluderat. Det stod att websidan ska vara skyddad av inloggning. Jag tolkade detta som att posts och kommentarer kräver inloggning och jag har gjort det möjligt för anonyma användare att i alla fall läsa inläggen och kolla runt på sidan, men att skriva något kräver inloggning. Den största utvecklingen kring användare jag behövde göra var angående den publika sidan där man kan se användarens aktivitet. Jag valde att visa upp de posts där användaren i fråga har varit aktiv. Vill man se kommentarerna kan man på samma sätt som post-sidan bara trycka på *"comments"* på posten. Kommentarerna var lite kluriga att skriva ut. Jag löste detta genom att skapa en funktion som genererar ett träd baserat på *parentCommentId*. Den skapar en tvådimentionell array där varje "*svar*" har en egen array kopplad till sig med sina subkommentarer. Denna array kan jag sedan loopa igenom i vyn för att skriva ut svaren och alla subkommentarer.
+
+Förstasidan är en vy med tre distinkta kolumner. De tre mest aktiva användarna visas upp, och detta får jag fram genom att summera mängden posts och kommentarer användaren gjort. Från början finns det bara två testkonton, men lägger man till fler så syns fortfarande bara de tre mest aktiva. De senaste inläggen syns i kolumn nummer 2 och detta var inget problem att få fram då varje post har en datetime. Sista kolumnen har de tre mest populära taggarna. Detta får jag fram genom att kolla på länktabellen *PostTag* och med COUNT hämta de tre mest använda.
+
+**Lite annat**
+
+Sidans källkod finns på Github och är länkad till Travis och CodeClimate. Mer information om sidan finns även på en about-undersida.
+
+### Allmänt om projektet
+
+Att hämta och skriva ut kommentarerna relaterade till ett inlägg var en av de svårare utmaningarna i projektet. Jag vet inte om min lösning med att använda ett optionellt *parentCommentId* var den mest optimala. Det fungerade såklart tillslut, men det var lite rörigt att generera trädet.
+
+Jag hade även ganska mycket problem när det kom till förstasidan. Det mest problematiska var SQL-koden för att hitta de tre mest aktiva användarna. Eftersom jag kollade på två olika tabeller var jag tvungen att slå samman två SELECT-statements, gruppera dem baserat på userId och räkna ihop en summa. En sak som tog mig väldigt lång tid angående detta var just att summera ihop tabellerna konstigt nog. Det låter enkelt men vad jag i slutändan insåg var problemet var att om en användare inte hade skrivit kommentarer utan bara posts, exempelvis, så försökte jag summera ett heltal med NULL. MYSQL har dock en *IFNULL*-funktion som löste detta genom att sätta ett default-värde, alltså 0 istället för NULL.
+
+Jag känner att jag tjänade mycket tid på att börja med att skapa hela databasstrukturen. Där löste jag många av de övergripande problemen för hela projektet. Jag borde ha lagt lite mer tid även på kodstruktursplanering, men mycket av det var ju redan förbestämt av ramverksstrukturen så det blev inte allt för rörigt.
+
+### Tankar kring kursen
+
+Det har varit en ganska tung kurs, men den har varit väldigt lärorik. Jag har specifikt lärt mig mycket om strukturellt tänk när det gäller att arbeta med ramverk. Dependency Injection och MVC är vad som har kännts mest centralt. Just tanken att arbeta modulärt och endast ladda in det som behövs är mycket smidigt. Jag tycker om att arbeta modulärt, och DI är ett smidigt sätt att bygga vidare på MVC. Att ha en modell för databashantering så som ActiveRecordModel är något nytt för mig. Det funkade ganska smidigt när man ska göra i princip samma sak med många olika typer av objekt. Dock var det lite problematiskt där AMR inte hade alla funktionaliteter som jag önskat, som tillexempel att få ut vilket ID som genererats när en ny rad skapats. Ibland fick jag även skriva lite egen SQL för lite mer komplicerade lösningar som förstasidan, men det var förväntat. Allt som allt tycker jag att det har varit en bra kurs och jag har inte något jag i stunden kan tänka mig vilja ändra.
